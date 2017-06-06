@@ -1,4 +1,4 @@
-REPO := registry.gitlab.com/ayufan/kubernetes-deploy-demo:latest
+REPO := registry.gitlab.com/ayufan/kubernetes-deploy:latest
 
 build:
 		docker build -t $(REPO) .
@@ -9,7 +9,7 @@ build_and_push: build
 build_test: build
 		source .dev_env && cd examples/rails-app/ && ../../build
 
-deploy_test: build
+deploy_test:
 		source .dev_env && cd examples/rails-app/ && ../../deploy
 
 build_and_enter: build

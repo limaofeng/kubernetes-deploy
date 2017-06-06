@@ -4,6 +4,7 @@ set -eo pipefail
 
 export CI_CONTAINER_NAME="ci_job_build_$CI_BUILD_ID"
 export CI_REGISTRY_TAG="$CI_BUILD_REF_SLUG"
+export TILLER_NAMESPACE="$KUBE_NAMESPACE"
 
 create_kubeconfig() {
   [[ -z "$KUBE_URL" ]] && return
@@ -61,4 +62,27 @@ ping_kube() {
     echo "Cannot connect to Kubernetes."
     return 1
   fi
+}
+
+ensure_namespace() {
+  cat <<EOF | kubectl apply -f -
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: $KUBE_NAMESPACE
+EOF
+}
+
+install_tiller() {
+  echo "Checking Tiller..."
+  if ! helm version &>/dev/null; then
+    echo "Configuring Tiller..."
+    helm init --canary-image
+    kubectl rollout status -n "$TILLER_NAMESPACE" -w "deployment/tiller-deploy"
+    if ! helm version --debug; then
+      echo "Failed to init Tiller."
+      return 1
+    fi
+  fi
+  echo ""
 }
