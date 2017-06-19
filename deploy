@@ -69,7 +69,7 @@ if [[ -z "$DISABLE_POSTGRES" ]]; then
   POSTGRES_USER="${POSTGRES_USER:-user}"
   POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-password}"
   POSTGRES_DB="${POSTGRES_DB:-$env_slug}"
-  DATABASE_URL="postgres://${postgres_name}:5432/$POSTGRES_DB/"
+  DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${postgres_name}:5432/$POSTGRES_DB/"
 
   cat <<EOF | kubectl apply -n $KUBE_NAMESPACE --force -f -
 apiVersion: extensions/v1beta1
