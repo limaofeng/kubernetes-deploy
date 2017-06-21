@@ -53,10 +53,10 @@ else
 fi
 
 if [[ -d chart/Chart.yaml ]]; then
-  echo "Using project-provided Chart.yaml"
+  echo "Using project-provided Chart.yaml..."
   cd chart/
 else
-  echo "Using bundled Chart.yaml"
+  echo "Using Auto Deploy Chart..."
   cd "$DEPLOY_ROOT_DIR/chart/"
 fi
 
