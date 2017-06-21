@@ -29,7 +29,7 @@ create_kubeconfig() {
 }
 
 ensure_environment_url() {
-  # [[ -n "$CI_ENVIRONMENT_URL" ]] && return
+  [[ -n "$CI_ENVIRONMENT_URL" ]] && return
 
   echo "Reading CI_ENVIRONMENT_URL from .gitlab-ci.yml..."
   CI_ENVIRONMENT_URL="$(ruby -ryaml -e 'puts YAML.load_file(".gitlab-ci.yml")[ENV["CI_BUILD_NAME"]]["environment"]["url"]')"
