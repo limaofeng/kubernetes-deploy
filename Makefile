@@ -1,7 +1,7 @@
 REPO := registry.gitlab.com/ayufan/kubernetes-deploy:latest
 
 build:
-		docker build -t $(REPO) .
+		docker build -q -t $(REPO) .
 
 build_and_push: build
 		docker push $(REPO)
