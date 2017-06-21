@@ -18,4 +18,7 @@ build_and_enter: build
 build_and_test: build
 		docker run --privileged -it --rm -v $(shell pwd):/app -w /app $(REPO) /bin/bash --login -c 'source .dev_env && ./deploy'
 
+build_and_test_canary: build
+		docker run --privileged -it --rm -v $(shell pwd):/app -w /app $(REPO) /bin/bash --login -c 'source .dev_env && ./deploy canary'
+
 .PHONY: build build_and_push build_test build_and_enter deploy_test build_and_test

@@ -15,6 +15,12 @@ We truncate at 24 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s-%s" .Release.Name $name | trimSuffix "-app" | trunc 24 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "appname" -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- $releaseName := default .Release.Name .Values.releaseOverride -}}
+{{- printf "%s-%s" $releaseName $name | trimSuffix "-app" | trunc 24 | trimSuffix "-" -}}
+{{- end -}}
+
 {{/*
 Get a hostname from URL
 */}}

@@ -1,9 +1,10 @@
+{{- if .Values.service.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
+    app: {{ template "appname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
 spec:
   type: {{ .Values.service.type }}
@@ -13,5 +14,6 @@ spec:
     protocol: TCP
     name: {{ .Values.service.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "appname" . }}
     tier: "{{ .Values.application.tier }}"
+{{- end -}}

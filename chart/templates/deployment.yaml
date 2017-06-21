@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
+    app: {{ template "appname" . }}
     track: "{{ .Values.application.track }}"
     tier: "{{ .Values.application.tier }}"
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}
+        app: {{ template "appname" . }}
         track: "{{ .Values.application.track }}"
         tier: "{{ .Values.application.tier }}"
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
