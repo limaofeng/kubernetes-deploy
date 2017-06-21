@@ -11,10 +11,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - {{ template "hostname" .Values.service.url | quote }}
+    - {{ template "hostname" .Values.service.url }}
     secretName: {{ template "fullname" . }}-tls
   rules:
-  - host: {{ template "hostname" .Values.service.url | quote }}
+  - host: {{ template "hostname" .Values.service.url }}
     http:
       paths:
       - path: /

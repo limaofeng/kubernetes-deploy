@@ -77,7 +77,7 @@ install_tiller() {
   echo "Checking Tiller..."
   if ! helm version &>/dev/null; then
     echo "Configuring Tiller..."
-    helm init --canary-image
+    helm init
     kubectl rollout status -n "$TILLER_NAMESPACE" -w "deployment/tiller-deploy"
     if ! helm version --debug; then
       echo "Failed to init Tiller."

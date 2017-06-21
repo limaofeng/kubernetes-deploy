@@ -15,4 +15,7 @@ deploy_test:
 build_and_enter: build
 		docker run --privileged -it --rm -v $(shell pwd):/app -w /app $(REPO) /bin/bash --login
 
-.PHONY: build build_and_push build_test build_and_enter deploy_test
+build_and_test: build
+		docker run --privileged -it --rm -v $(shell pwd):/app -w /app $(REPO) /bin/bash --login -c 'source .dev_env && ./deploy'
+
+.PHONY: build build_and_push build_test build_and_enter deploy_test build_and_test

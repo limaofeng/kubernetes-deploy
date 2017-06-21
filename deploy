@@ -17,6 +17,7 @@ create_kubeconfig
 ensure_namespace
 install_tiller
 
+set -x
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_URL}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/http:\/\//}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/https:\/\//}"
@@ -101,11 +102,11 @@ echo ""
 echo "Waiting for deployment/$name..."
 kubectl get deployments -n "$KUBE_NAMESPACE"
 kubectl get pods -n "$KUBE_NAMESPACE"
-kubectl rollout status -n "$KUBE_NAMESPACE" -w "deployment/${name}-app"
+kubectl rollout status -n "$KUBE_NAMESPACE" -w "deployment/${name}"
 
 if [[ "$track" == "stable" ]]; then
   echo "Removing canary deployments (if found)..."
-  kubectl delete all,ing -l "app=${CI_ENVIRONMENT_SLUG}-app" -l "track=canary" -n "$KUBE_NAMESPACE"
+  kubectl delete all,ing -l "app=${CI_ENVIRONMENT_SLUG}" -l "track=canary" -n "$KUBE_NAMESPACE"
 fi
 
 echo "Application is accessible at: ${CI_ENVIRONMENT_URL}"
