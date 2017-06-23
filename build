@@ -15,7 +15,7 @@ echo "Checking docker engine..."
 
 if ! docker info &>/dev/null; then
 	echo "Missing docker engine to build images."
-	echo "Running docker:dind locally with graph driver pointing to '/cache/docker'"
+	echo "Running docker:dind locally with data root pointing to '/cache/docker'"
 
 	if ! grep -q overlay /proc/filesystems; then
 		echo "Missing overlay filesystem. Are you running recent enough kernel?"
@@ -29,7 +29,7 @@ if ! docker info &>/dev/null; then
 	dockerd \
 		--host=unix:///var/run/docker.sock \
 		--storage-driver=overlay \
-		--graph=/cache/docker & &>/docker.log
+		--data-root=/cache/docker & &>/docker.log
 
   trap 'kill %%' EXIT
 
