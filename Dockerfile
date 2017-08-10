@@ -32,6 +32,7 @@ RUN ln -s /opt/kubernetes-deploy/run /usr/bin/deploy && \
   which deploy && \
   which canary && \
   which build && \
+  which test && \
   which destroy
 
 ENTRYPOINT []
