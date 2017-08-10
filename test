@@ -51,8 +51,8 @@ if ! docker info &>/dev/null; then
 fi
 
 echo "Running tests for application using gitlab-org/herokuish docker image..."
-docker run --rm
+docker run --rm \
   -v "$(pwd):/tmp/app:ro" \
   -v "/cache/herokuish:/tmp/cache" \
-  docker pull registry.gitlab.com/gitlab-org/herokuish /bin/herokuish buildpack test
+  registry.gitlab.com/gitlab-org/herokuish /bin/herokuish buildpack test
 echo ""
