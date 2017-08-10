@@ -54,5 +54,5 @@ echo "Running tests for application using gitlab-org/herokuish docker image..."
 docker run --rm
   -v "$(pwd):/tmp/app:ro" \
   -v "/cache/herokuish:/tmp/cache" \
-  gliderlabs/herokuish /bin/herokuish buildpack test-with-compile
+  gliderlabs/herokuish /bin/herokuish buildpack test
 echo ""
