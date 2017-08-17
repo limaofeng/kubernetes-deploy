@@ -75,7 +75,6 @@ ensure_docker_engine() {
 
     if [[ ! -d /cache ]]; then
       mkdir -p /cache
-      mount -t tmpfs tmpfs /cache
     fi
 
     dockerd \
