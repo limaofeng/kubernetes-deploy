@@ -13,14 +13,12 @@ source "$DEPLOY_ROOT_DIR/src/common.bash"
 echo "$DEPLOY_ROOT_DIR"
 ensure_environment_url
 ensure_deploy_variables
-echo "ensure_deploy_variables ->>>>>>>>>>>>>>>>>>>>>>"
 create_kubeconfig
-echo "create_kubeconfig"
 
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_URL}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/http:\/\//}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/https:\/\//}"
-
+echo "........................"
 cat <<EOF | kubectl apply -f -
 kind: Namespace
 apiVersion: v1
