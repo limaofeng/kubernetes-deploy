@@ -10,7 +10,7 @@ done
 export DEPLOY_ROOT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 source "$DEPLOY_ROOT_DIR/src/common.bash"
-
+echo "$DEPLOY_ROOT_DIR"
 ensure_environment_url
 ensure_deploy_variables
 echo "ensure_deploy_variables ->>>>>>>>>>>>>>>>>>>>>>"
