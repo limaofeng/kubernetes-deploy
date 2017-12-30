@@ -25,7 +25,7 @@ apiVersion: v1
 metadata:
   name: $KUBE_NAMESPACE
 EOF
-
+echo "1. kubectl"
 kubectl create secret -n $KUBE_NAMESPACE \
   docker-registry gitlab-registry \
   --docker-server="$CI_REGISTRY" \
@@ -33,7 +33,7 @@ kubectl create secret -n $KUBE_NAMESPACE \
   --docker-password="$CI_REGISTRY_PASSWORD" \
   --docker-email="$GITLAB_USER_EMAIL" \
   -o yaml --dry-run | kubectl replace -n $KUBE_NAMESPACE --force -f -
-
+echo "2. kubectl"
 track="${1-stable}"
 name="$CI_ENVIRONMENT_SLUG"
 
