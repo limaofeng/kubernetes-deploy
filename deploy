@@ -18,7 +18,7 @@ create_kubeconfig
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_URL}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/http:\/\//}"
 CI_ENVIRONMENT_HOSTNAME="${CI_ENVIRONMENT_HOSTNAME/https:\/\//}"
-echo "........................"
+kubectl get nodes
 cat <<EOF | kubectl apply -f -
 kind: Namespace
 apiVersion: v1
