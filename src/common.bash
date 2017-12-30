@@ -18,8 +18,8 @@ create_kubeconfig() {
   fi
   kubectl config set-cluster gitlab-deploy --insecure-skip-tls-verify=true --server="$KUBE_URL" \
     $KUBE_CLUSTER_OPTIONS
-#  kubectl config set-credentials gitlab-deploy --token="$KUBE_TOKEN" \
-#    $KUBE_CLUSTER_OPTIONS
+  kubectl config set-credentials gitlab-deploy --token="$KUBE_TOKEN" \
+    $KUBE_CLUSTER_OPTIONS
   kubectl config set-context gitlab-deploy \
     --cluster=gitlab-deploy --user=gitlab-deploy \
     --namespace="$KUBE_NAMESPACE"
