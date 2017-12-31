@@ -227,10 +227,10 @@ EOF
 echo "Waiting for deployment..."
 kubectl rollout status -n "$KUBE_NAMESPACE" -w "deployment/$name"
 
-#if [[ "$track" == "stable" ]]; then
-#  echo "Removing canary deployments (if found)..."
-#  kubectl delete all,ing -l "app=$CI_ENVIRONMENT_SLUG" -l "track=canary" -n "$KUBE_NAMESPACE"
-#fi
+if [[ "$track" == "stable" ]]; then
+  echo "Removing canary deployments (if found)..."
+  kubectl delete all,ing -l "app=$CI_ENVIRONMENT_SLUG" -l "track=canary" -n "$KUBE_NAMESPACE"
+fi
 
 echo "Application is accessible at: ${CI_ENVIRONMENT_URL}"
 echo ""
