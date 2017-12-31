@@ -211,8 +211,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
-  - hosts:
-    - $CI_ENVIRONMENT_HOSTNAME
+  - hosts: $CI_ENVIRONMENT_HOSTNAME
     secretName: ${CI_ENVIRONMENT_SLUG}-tls
   rules:
   - host: $CI_ENVIRONMENT_HOSTNAME
