@@ -200,7 +200,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: $CI_ENVIRONMENT_SLUG
+  name: "${CI_ENVIRONMENT_SLUG}-ingress"
   namespace: $KUBE_NAMESPACE
   labels:
     app: $CI_ENVIRONMENT_SLUG
@@ -216,12 +216,12 @@ spec:
     secretName: ${CI_ENVIRONMENT_SLUG}-tls
   rules:
   - host: $CI_ENVIRONMENT_HOSTNAME
-    backend:
-      serviceName: $CI_ENVIRONMENT_SLUG
-      servicePort: 5000
     http:
       paths:
       - path: /
+        backend:
+          serviceName: $CI_ENVIRONMENT_SLUG
+          servicePort: 5000
 EOF
 
 echo "Waiting for deployment..."
