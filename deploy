@@ -200,7 +200,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: "${CI_ENVIRONMENT_SLUG}-ingress"
+  name: $CI_ENVIRONMENT_SLUG
   namespace: $KUBE_NAMESPACE
   labels:
     app: $CI_ENVIRONMENT_SLUG
