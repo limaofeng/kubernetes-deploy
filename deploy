@@ -135,7 +135,7 @@ metadata:
   name: $name
   namespace: $KUBE_NAMESPACE
   labels:
-    app: $CI_ENVIRONMENT_SLUG
+    k8s-app: $CI_ENVIRONMENT_SLUG
     track: "$track"
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
@@ -146,7 +146,7 @@ spec:
     metadata:
       labels:
         name: $name
-        app: $CI_ENVIRONMENT_SLUG
+        k8s-app: $CI_ENVIRONMENT_SLUG
         track: "$track"
         tier: web
     spec:
@@ -185,7 +185,7 @@ metadata:
   name: $CI_ENVIRONMENT_SLUG
   namespace: $KUBE_NAMESPACE
   labels:
-    app: $CI_ENVIRONMENT_SLUG
+    k8s-app: $CI_ENVIRONMENT_SLUG
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
 spec:
@@ -194,7 +194,7 @@ spec:
       port: 5000
       targetPort: web
   selector:
-    app: $CI_ENVIRONMENT_SLUG
+    k8s-app: $CI_ENVIRONMENT_SLUG
     tier: web
 ---
 apiVersion: extensions/v1beta1
@@ -203,7 +203,7 @@ metadata:
   name: $CI_ENVIRONMENT_SLUG
   namespace: $KUBE_NAMESPACE
   labels:
-    app: $CI_ENVIRONMENT_SLUG
+    k8s-app: $CI_ENVIRONMENT_SLUG
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
   annotations:
