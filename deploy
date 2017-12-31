@@ -207,10 +207,6 @@ metadata:
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
 spec:
-  tls:
-  - hosts:
-    - $CI_ENVIRONMENT_HOSTNAME
-    secretName: ${CI_ENVIRONMENT_SLUG}-tls
   rules:
   - host: $CI_ENVIRONMENT_HOSTNAME
     http:
