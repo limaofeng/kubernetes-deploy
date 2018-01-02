@@ -170,13 +170,13 @@ spec:
           httpGet:
             path: /
             port: 5000
-          initialDelaySeconds: 15
+          initialDelaySeconds: 45
           timeoutSeconds: 30
         readinessProbe:
           httpGet:
             path: /
             port: 5000
-          initialDelaySeconds: 5
+          initialDelaySeconds: 25
           timeoutSeconds: 10
 ---
 apiVersion: v1
