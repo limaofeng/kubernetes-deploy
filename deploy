@@ -28,7 +28,7 @@ EOF
 
 kubectl create secret -n $KUBE_NAMESPACE \
   docker-registry gitlab-registry \
-  --docker-server="$CI_REGISTRY" \
+  --docker-server="${CI_REGISTRY}/limaofeng/expressjs-www" \
   --docker-username="$CI_REGISTRY_USER" \
   --docker-password="$CI_REGISTRY_PASSWORD" \
   --docker-email="$GITLAB_USER_EMAIL" \
