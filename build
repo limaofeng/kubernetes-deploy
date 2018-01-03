@@ -28,7 +28,7 @@ else
 	docker run -i --name="$CI_CONTAINER_NAME" \
 		-v "$(pwd):/tmp/app:ro" \
 		-v "/cache/herokuish:/tmp/cache" \
-		gliderlabs/herokuish /bin/herokuish buildpack build
+		hom297md.mirror.aliyuncs.com/gliderlabs/herokuish /bin/herokuish buildpack build
 	docker commit "$CI_CONTAINER_NAME" "$CI_REGISTRY_IMAGE:$CI_REGISTRY_TAG"
 	docker rm "$CI_CONTAINER_NAME" >/dev/null
 	echo ""
