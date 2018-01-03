@@ -28,12 +28,11 @@ EOF
 
 kubectl create secret -n $KUBE_NAMESPACE \
   docker-registry gitlab-registry \
-  --docker-server="$CI_REGISTRY" \
+  --docker-server="https://${CI_REGISTRY}/v2/" \
   --docker-username="$CI_REGISTRY_USER" \
   --docker-password="$CI_REGISTRY_PASSWORD" \
+  --docker-email="$GITLAB_USER_EMAIL" \
   -o yaml --dry-run | kubectl replace -n $KUBE_NAMESPACE --force -f -
-
-# --docker-email="$GITLAB_USER_EMAIL" \
 
 track="${1-stable}"
 name="$CI_ENVIRONMENT_SLUG"
