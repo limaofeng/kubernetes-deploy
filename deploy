@@ -28,7 +28,7 @@ EOF
 
 kubectl create secret -n $KUBE_NAMESPACE \
   docker-registry gitlab-registry \
-  --docker-server="${CI_REGISTRY}/limaofeng/expressjs-www" \
+  --docker-server="$CI_REGISTRY" \
   --docker-username="$CI_REGISTRY_USER" \
   --docker-password="$CI_REGISTRY_PASSWORD" \
   --docker-email="$GITLAB_USER_EMAIL" \
@@ -89,8 +89,6 @@ spec:
         app: $postgres_app
         tier: database
     spec:
-      imagePullSecrets:
-      - name: gitlab-registry
       containers:
       - name: app
         image: postgres:9.6-alpine
