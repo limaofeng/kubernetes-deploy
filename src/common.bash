@@ -16,8 +16,13 @@ create_kubeconfig() {
     echo "$KUBE_CA_PEM" > "$(pwd)/kube.ca.pem"
     export KUBE_CLUSTER_OPTIONS=--certificate-authority="$(pwd)/kube.ca.pem"
   fi
-  kubectl config set-cluster gitlab-deploy --server="$KUBE_URL" \
-    $KUBE_CLUSTER_OPTIONS
+  if [[ -n "$KUBE_CA_PEM" ]]; then
+    kubectl config set-cluster gitlab-deploy --server="$KUBE_URL" \
+      $KUBE_CLUSTER_OPTIONS
+  else
+    kubectl config set-cluster gitlab-deploy --insecure-skip-tls-verify=true --server="$KUBE_URL" \
+      $KUBE_CLUSTER_OPTIONS
+  fi
   kubectl config set-credentials gitlab-deploy --token="$KUBE_TOKEN" \
     $KUBE_CLUSTER_OPTIONS
   kubectl config set-context gitlab-deploy \
